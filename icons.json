@@ -2,8 +2,18 @@
   "repo": "dan90o0/icons",
   "updated": "2026-11-27",
   "naming": "english-slug",
-  "count": 1,
+  "count": 2,
   "icons": [
+    {
+      "slug": "crt-girl",
+      "name_zh": "crt-girl",
+      "category": "character",
+      "type": "animated",
+      "format": "gif",
+      "path": "animated/gif/crt-girl.gif",
+      "size": 4957418,
+      "added": "2026-11-27"
+    },
     {
       "slug": "suis-dance",
       "name_zh": "suis-dance",
