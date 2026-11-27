@@ -70,10 +70,12 @@ GitHub 仓库页 → 进入 `incoming/` → **Add file → Upload files** → �
 
 | 输入 | 说明 |
 |---|---|
-| `url` | 图片 / GIF / mp4 直链 |
-| `slug` | 英文名，留空则取文件名 |
+| `url` | **支持 x.com / twitter.com 推文链接**，或图片 / GIF / mp4 直链 |
+| `slug` | 英文名，留空则取文件名（推文链接留空则为 `x-推文ID`） |
 | `zh` | 中文名，可留空 |
 | `category` | 分类，如 `character` / `arrow` / `emoji`，默认 `misc` |
+
+推文链接会自动解析出媒体（一条推文多图会依次存为 `slug-1`、`slug-2`…），GIF / 视频自动转码，无需先拿到 twimg 直链。
 
 ### ③ 命令行（本机有环境时）
 
@@ -82,7 +84,7 @@ python3 scripts/ingest.py --url "https://example.com/a.gif" --slug heart --zh �
 python3 scripts/ingest.py        # 处理 incoming/ 里的所有文件
 ```
 
-> 注意：`x.com` 的推文链接不能直接填进 `url`（Twitter 的图床有防盗链和跳转），需要先拿到 `video.twimg.com/...mp4` 这样的直链，或者直接把 GIF 文件传到 `incoming/`。
+> 推文链接依赖 `api.fxtwitter.com` 解析（失败会自动退到 `api.vxtwitter.com`），测试推文请用公开账号。
 
 ## 收录新图标（手工脚本）
 

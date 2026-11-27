@@ -36,6 +36,38 @@ LOTTIE_EXT = {".json", ".lottie"}
 
 LITE_THRESHOLD = 2 * 1024 * 1024  # 2MB
 
+# x.com / twitter.com 状态链接
+X_STATUS_RE = re.compile(
+    r"https?://(?:www\.|mobile\.)?(?:x|twitter)\.com/(?:[^/\s]+/)?status(?:es)?/(\d+)"
+)
+
+
+def resolve_x(url: str) -> list:
+    """把 x.com / twitter.com 推文链接解析成媒体直链列表。"""
+    m = X_STATUS_RE.search(url)
+    if not m:
+        return []
+    sid = m.group(1)
+    apis = [
+        f"https://api.fxtwitter.com/i/status/{sid}",
+        f"https://api.vxtwitter.com/i/status/{sid}",
+    ]
+    for api in apis:
+        try:
+            req = urllib.request.Request(api, headers={"User-Agent": "Mozilla/5.0"})
+            with urllib.request.urlopen(req, timeout=40) as r:
+                data = json.loads(r.read().decode("utf-8", "ignore"))
+        except Exception as e:
+            print(f"  {api.split('/')[2]} 解析失败：{e}")
+            continue
+        tweet = data.get("tweet") or data
+        media = (tweet.get("media") or {}).get("all") or tweet.get("media_extended") or []
+        out = [{"url": it["url"], "type": it.get("type", "")} for it in media if it.get("url")]
+        if out:
+            print(f"  推文解析成功：{len(out)} 个媒体")
+            return out
+    return []
+
 
 def sanitize(text: str) -> str:
     s = text.strip().lower()
@@ -171,11 +203,25 @@ def main() -> None:
     processed = 0
 
     if args.url:
-        src = download(args.url)
-        slug = unique_slug(sanitize(args.slug or Path(urllib.parse.urlparse(args.url).path).stem or "icon"))
-        print(f"→ 收录 {slug}")
-        process(src, slug, args.zh, args.category)
-        processed += 1
+        if X_STATUS_RE.search(args.url):
+            # 推文链接：解析成媒体直链，支持一条推文多张图
+            items = resolve_x(args.url)
+            if not items:
+                raise SystemExit(f"推文媒体解析失败：{args.url}")
+            sid = X_STATUS_RE.search(args.url).group(1)
+            base = sanitize(args.slug or f"x-{sid}")
+            for idx, it in enumerate(items, 1):
+                slug = unique_slug(base if len(items) == 1 else f"{base}-{idx}")
+                print(f"→ 收录 {slug}（来自推文 {sid}）")
+                src = download(it["url"])
+                process(src, slug, args.zh, args.category)
+                processed += 1
+        else:
+            src = download(args.url)
+            slug = unique_slug(sanitize(args.slug or Path(urllib.parse.urlparse(args.url).path).stem or "icon"))
+            print(f"→ 收录 {slug}")
+            process(src, slug, args.zh, args.category)
+            processed += 1
     else:
         INCOMING.mkdir(exist_ok=True)
         files = [p for p in sorted(INCOMING.iterdir()) if p.is_file() and not p.name.startswith(".")]

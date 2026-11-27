@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       url:
-        description: '图片/GIF/mp4 链接（与 incoming 二选一）'
+        description: 'x.com 推文链接，或图片/GIF/mp4 直链'
         required: false
       slug:
         description: '英文名（留空则用文件名，自动转 kebab-case）'
