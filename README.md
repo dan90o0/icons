@@ -140,6 +140,12 @@ https://cdn.jsdelivr.net/gh/dan90o0/icons@main/All-Icon.json
 | <img src="https://cdn.jsdelivr.net/gh/dan90o0/icons@main/animated/gif/crt-girl.gif" width="32" alt="crt-girl"> | `crt-girl` | crt-girl | gif | 4841.2 KB | `animated/gif/crt-girl.gif` |
 | <img src="https://cdn.jsdelivr.net/gh/dan90o0/icons@main/animated/gif/suis-dance.gif" width="32" alt="suis-dance"> | `suis-dance` | suis-dance | gif | 522.0 KB | `animated/gif/suis-dance.gif` |
 
+### misc（1）
+
+| 图标 | 名称 | 中文名 | 格式 | 大小 | 路径 |
+|:---:|---|---|---|---:|---|
+| <img src="https://cdn.jsdelivr.net/gh/dan90o0/icons@main/static/svg/zap-bolt.svg" width="32" alt="zap-bolt"> | `zap-bolt` | zap-bolt | svg | 0.2 KB | `static/svg/zap-bolt.svg` |
+
 <!-- ICONS:END -->
 
 ## 授权

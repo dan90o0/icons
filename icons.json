@@ -2,7 +2,7 @@
   "repo": "dan90o0/icons",
   "updated": "2026-11-27",
   "naming": "english-slug",
-  "count": 2,
+  "count": 3,
   "icons": [
     {
       "slug": "crt-girl",
@@ -22,6 +22,16 @@
       "format": "gif",
       "path": "animated/gif/suis-dance.gif",
       "size": 534493,
+      "added": "2026-11-27"
+    },
+    {
+      "slug": "zap-bolt",
+      "name_zh": "zap-bolt",
+      "category": "misc",
+      "type": "static",
+      "format": "svg",
+      "path": "static/svg/zap-bolt.svg",
+      "size": 207,
       "added": "2026-11-27"
     }
   ]
