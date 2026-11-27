@@ -17,6 +17,15 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Ensure tools (ffmpeg may be missing on ubuntu-24.04 runners)
+        shell: bash
+        run: |
+          set -e
+          command -v ffmpeg >/dev/null || sudo apt-get update -y >/dev/null 2>&1
+          command -v ffmpeg >/dev/null || sudo apt-get install -y ffmpeg >/dev/null 2>&1
+          ffmpeg -version 2>&1 | head -1
+          python3 --version
+
       - name: Fetch media and add icons
         shell: bash
         run: |
