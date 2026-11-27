@@ -135,13 +135,14 @@ https://cdn.jsdelivr.net/gh/dan90o0/icons@main/All-Icon.json
 
 <!-- ICONS:START -->
 
-### character（3）
+### character（4）
 
 | 图标 | 名称 | 中文名 | 格式 | 大小 | 路径 |
 |:---:|---|---|---|---:|---|
 | <img src="https://cdn.jsdelivr.net/gh/dan90o0/icons@main/animated/gif/crt-girl.gif" width="32" alt="crt-girl"> | `crt-girl` | crt-girl | gif | 4841.2 KB | `animated/gif/crt-girl.gif` |
 | <img src="https://cdn.jsdelivr.net/gh/dan90o0/icons@main/animated/gif/potato-ninja.gif" width="32" alt="potato-ninja"> | `potato-ninja` | 薯片忍者 | gif | 201.6 KB | `animated/gif/potato-ninja.gif` |
 | <img src="https://cdn.jsdelivr.net/gh/dan90o0/icons@main/animated/gif/suis-dance.gif" width="32" alt="suis-dance"> | `suis-dance` | suis-dance | gif | 522.0 KB | `animated/gif/suis-dance.gif` |
+| <img src="https://cdn.jsdelivr.net/gh/dan90o0/icons@main/animated/gif/x-2125926695010254937.gif" width="32" alt="x-2125926695010254937"> | `x-2125926695010254937` | 生徒会にも穴はある | gif | 687.7 KB | `animated/gif/x-2125926695010254937.gif` |
 
 ### misc（1）
 

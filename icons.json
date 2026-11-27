@@ -2,7 +2,7 @@
   "repo": "dan90o0/icons",
   "updated": "2026-11-27",
   "naming": "english-slug",
-  "count": 4,
+  "count": 5,
   "icons": [
     {
       "slug": "crt-girl",
@@ -32,6 +32,16 @@
       "format": "gif",
       "path": "animated/gif/suis-dance.gif",
       "size": 534493,
+      "added": "2026-11-27"
+    },
+    {
+      "slug": "x-2125926695010254937",
+      "name_zh": "生徒会にも穴はある",
+      "category": "character",
+      "type": "animated",
+      "format": "gif",
+      "path": "animated/gif/x-2125926695010254937.gif",
+      "size": 704251,
       "added": "2026-11-27"
     },
     {

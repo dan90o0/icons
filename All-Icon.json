@@ -1,6 +1,6 @@
 {
     "name": "dan90o0 图标库",
-    "description": "作者：dan90o0｜更新时间：2026-11-27 07:41｜共 4 个（静态 1 · 动态 3）",
+    "description": "作者：dan90o0｜更新时间：2026-11-27 08:01｜共 5 个（静态 1 · 动态 4）",
     "icons": [
         {
             "name": "crt-girl",
@@ -13,6 +13,10 @@
         {
             "name": "suis-dance",
             "url": "https://raw.githubusercontent.com/dan90o0/icons/main/animated/gif/suis-dance.gif"
+        },
+        {
+            "name": "生徒会にも穴はある",
+            "url": "https://raw.githubusercontent.com/dan90o0/icons/main/animated/gif/x-2125926695010254937.gif"
         },
         {
             "name": "zap-bolt",
