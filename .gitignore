@@ -1,5 +1,4 @@
 .DS_Store
 Thumbs.db
-incoming/
 __pycache__/
 *.pyc
