@@ -2,7 +2,7 @@
   "repo": "dan90o0/icons",
   "updated": "2026-11-27",
   "naming": "english-slug",
-  "count": 3,
+  "count": 4,
   "icons": [
     {
       "slug": "crt-girl",
@@ -12,6 +12,16 @@
       "format": "gif",
       "path": "animated/gif/crt-girl.gif",
       "size": 4957418,
+      "added": "2026-11-27"
+    },
+    {
+      "slug": "potato-ninja",
+      "name_zh": "薯片忍者",
+      "category": "character",
+      "type": "animated",
+      "format": "gif",
+      "path": "animated/gif/potato-ninja.gif",
+      "size": 206449,
       "added": "2026-11-27"
     },
     {

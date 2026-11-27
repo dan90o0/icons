@@ -1,10 +1,14 @@
 {
     "name": "dan90o0 图标库 · character",
-    "description": "作者：dan90o0｜更新时间：2026-11-27 07:23｜共 2 个（静态 0 · 动态 2）",
+    "description": "作者：dan90o0｜更新时间：2026-11-27 07:41｜共 3 个（静态 0 · 动态 3）",
     "icons": [
         {
             "name": "crt-girl",
             "url": "https://raw.githubusercontent.com/dan90o0/icons/main/animated/gif/crt-girl-lite.gif"
+        },
+        {
+            "name": "薯片忍者",
+            "url": "https://raw.githubusercontent.com/dan90o0/icons/main/animated/gif/potato-ninja.gif"
         },
         {
             "name": "suis-dance",
