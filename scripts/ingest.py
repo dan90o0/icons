@@ -183,12 +183,17 @@ def main() -> None:
             print("incoming/ 里没有待处理文件，也没有传 --url。")
             return
         for f in files:
+            if f.suffix.lower() not in VIDEO_EXT | IMAGE_EXT | LOTTIE_EXT:
+                print(f"→ 跳过 {f.name}（不是图标格式）")
+                continue
             slug = unique_slug(sanitize(args.slug or f.stem))
             print(f"→ 收录 {f.name} as {slug}")
             try:
                 process(f, slug, args.zh, args.category)
                 f.unlink()
                 processed += 1
+            except SystemExit as e:
+                print(f"  跳过：{e}")
             except subprocess.CalledProcessError as e:
                 print(f"  失败，保留源文件：{e}")
 
