@@ -50,7 +50,41 @@ https://raw.githubusercontent.com/dan90o0/icons/main/static/svg/arrow-left.svg
 
 微信小程序里用 CDN 地址时，记得把 `cdn.jsdelivr.net` 加进 **downloadFile 合法域名**；如果不想配域名，直接把 `.svg` / `.png` 下载进包内 `assets/` 反而更稳。
 
-## 收录新图标
+## 自助收录（不用找人，也不消耗 AI）
+
+三条入口，选最顺手的：
+
+### ① 传文件到 `incoming/`（最省事，手机也能用）
+
+GitHub 仓库页 → 进入 `incoming/` → **Add file → Upload files** → 拖入图片 → Commit。
+传完自动触发 `ingest-icon` 工作流：
+
+- 文件名转 slug：`Blue Dot.png` → `blue-dot.png`；中文/空格/大写自动清洗
+- `mp4 / mov / webm / m4v` 自动转 GIF（宽 ≤560、15fps、调色板优化）
+- GIF 超过 2 MB 自动额外生成 `xxx-lite.gif`（≤320 宽、10fps），清单优先指向 lite 版
+- 归档、更新索引与清单、提交，源文件自动删除
+
+### ② Actions 填表单（只有链接时用）
+
+仓库页 → **Actions** → 左侧 **ingest-icon** → **Run workflow**，填：
+
+| 输入 | 说明 |
+|---|---|
+| `url` | 图片 / GIF / mp4 直链 |
+| `slug` | 英文名，留空则取文件名 |
+| `zh` | 中文名，可留空 |
+| `category` | 分类，如 `character` / `arrow` / `emoji`，默认 `misc` |
+
+### ③ 命令行（本机有环境时）
+
+```bash
+python3 scripts/ingest.py --url "https://example.com/a.gif" --slug heart --zh 心跳 --category emoji
+python3 scripts/ingest.py        # 处理 incoming/ 里的所有文件
+```
+
+> 注意：`x.com` 的推文链接不能直接填进 `url`（Twitter 的图床有防盗链和跳转），需要先拿到 `video.twimg.com/...mp4` 这样的直链，或者直接把 GIF 文件传到 `incoming/`。
+
+## 收录新图标（手工脚本）
 
 ```bash
 # 本地文件

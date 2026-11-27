@@ -25,6 +25,15 @@ AUTHOR = "dan90o0"
 LIB_NAME = "dan90o0 图标库"
 
 
+def icon_url(icon: dict) -> str:
+    """大 GIF 存在 -lite 版本时，清单指向轻量版（体积小、加载快）。"""
+    path = ROOT / icon["path"]
+    lite = path.with_name(f"{path.stem}-lite{path.suffix}")
+    if lite.exists():
+        return f"{RAW}/{icon['path'].rsplit('/', 1)[0]}/{lite.name}"
+    return f"{RAW}/{icon['path']}"
+
+
 def manifest(icons: list, title: str, extra: str = "") -> dict:
     statics = sum(1 for i in icons if i["type"] == "static")
     anims = len(icons) - statics
@@ -39,7 +48,7 @@ def manifest(icons: list, title: str, extra: str = "") -> dict:
         "name": title,
         "description": "｜".join(parts),
         "icons": [
-            {"name": i.get("name_zh") or i["slug"], "url": f"{RAW}/{i['path']}"}
+            {"name": i.get("name_zh") or i["slug"], "url": icon_url(i)}
             for i in sorted(icons, key=lambda x: (x["category"], x["slug"]))
         ],
     }

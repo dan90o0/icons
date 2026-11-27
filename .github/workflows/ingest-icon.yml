@@ -1,0 +1,77 @@
+name: ingest-icon
+
+# 两种自助入口：
+#   1) Actions 页面点「Run workflow」，填链接/名字/分类
+#   2) 把文件传到 incoming/ 目录（GitHub 网页或手机 App 的 Add file → Upload files）
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: '图片/GIF/mp4 链接（与 incoming 二选一）'
+        required: false
+      slug:
+        description: '英文名（留空则用文件名，自动转 kebab-case）'
+        required: false
+      zh:
+        description: '中文名（可留空）'
+        required: false
+      category:
+        description: '分类：character / arrow / emoji / social / misc'
+        required: false
+        default: 'misc'
+  push:
+    paths:
+      - 'incoming/**'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ingest-icon
+  cancel-in-progress: false
+
+jobs:
+  ingest:
+    # 机器人自己提交的清理动作不重复触发
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Ensure ffmpeg
+        shell: bash
+        run: |
+          command -v ffmpeg >/dev/null || sudo apt-get update -y >/dev/null 2>&1
+          command -v ffmpeg >/dev/null || sudo apt-get install -y ffmpeg >/dev/null 2>&1
+          ffmpeg -version 2>&1 | head -1
+
+      - name: Ingest
+        shell: bash
+        env:
+          IN_URL: ${{ inputs.url }}
+          IN_SLUG: ${{ inputs.slug }}
+          IN_ZH: ${{ inputs.zh }}
+          IN_CAT: ${{ inputs.category }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -n "${IN_URL}" ]; then
+            python3 scripts/ingest.py --url "${IN_URL}" --slug "${IN_SLUG}" --zh "${IN_ZH}" --category "${IN_CAT:-misc}"
+          else
+            python3 scripts/ingest.py --category "${IN_CAT:-misc}"
+          fi
+
+      - name: Commit and push
+        shell: bash
+        run: |
+          git add -A
+          if git diff --cached --quiet; then
+            echo "nothing to commit"
+          else
+            git commit -m "ingest icon(s) [skip ci]"
+            git push
+          fi

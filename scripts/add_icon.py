@@ -79,6 +79,7 @@ def main() -> None:
     ap.add_argument("--category", default="misc")
     ap.add_argument("--type", choices=["static", "animated"])
     ap.add_argument("--no-push", action="store_true")
+    ap.add_argument("--no-commit", action="store_true")
     args = ap.parse_args()
 
     slug = args.slug.strip().lower()
@@ -120,10 +121,11 @@ def main() -> None:
     subprocess.run([sys.executable, str(ROOT / "scripts" / "build_readme.py")], check=True)
     subprocess.run([sys.executable, str(ROOT / "scripts" / "build_manifest.py")], check=True)
 
-    subprocess.run(["git", "add", "-A"], cwd=ROOT, check=True)
-    subprocess.run(["git", "commit", "-m", f"add icon: {slug} ({args.zh})"], cwd=ROOT, check=True)
-    if not args.no_push:
-        subprocess.run(["git", "push", "origin", "HEAD"], cwd=ROOT, check=True)
+    if not args.no_commit:
+        subprocess.run(["git", "add", "-A"], cwd=ROOT, check=True)
+        subprocess.run(["git", "commit", "-m", f"add icon: {slug} ({args.zh})"], cwd=ROOT, check=True)
+        if not args.no_push:
+            subprocess.run(["git", "push", "origin", "HEAD"], cwd=ROOT, check=True)
 
     print(f"✓ {rel}  ({size} bytes)  {args.zh} / {slug}  [{kind}]")
 
