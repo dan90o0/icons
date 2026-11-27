@@ -1,0 +1,61 @@
+name: fetch-icon
+
+on:
+  push:
+    paths: ['.github/triggers/**']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch media and add icons
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          for f in .github/triggers/*.json; do
+            url=$(python3 -c "import json;print(json.load(open('$f'))['url'])")
+            slug=$(python3 -c "import json;print(json.load(open('$f'))['slug'])")
+            zh=$(python3 -c "import json;print(json.load(open('$f')).get('zh') or '')")
+            category=$(python3 -c "import json;print(json.load(open('$f')).get('category') or 'misc')")
+            zh="${zh:-$slug}"
+            echo "::group::$slug ($url)"
+            if [ -f "animated/gif/$slug.gif" ]; then
+              echo "skip: animated/gif/$slug.gif already exists"
+              rm -f "$f"
+              continue
+            fi
+            tmp="/tmp/$slug.mp4"
+            curl -sL --retry 3 --retry-delay 2 -A "Mozilla/5.0" -o "$tmp" "$url"
+            ls -la "$tmp"
+            # mp4 (Twitter GIF 容器) -> 高质量 GIF：diff 模式调色板 + 抖动
+            ffmpeg -y -loglevel error -i "$tmp" -vf \
+              "split[s0][s1];[s0]palettegen=stats_mode=diff[p];[s1][p]paletteuse=dither=bayer:bayer_scale=4:diff_mode=rectangle" \
+              -loop 0 "/tmp/$slug.gif"
+            ls -la "/tmp/$slug.gif"
+            python3 scripts/add_icon.py "/tmp/$slug.gif" --slug "$slug" --zh "$zh" --category "$category" --no-push
+            rm -f "$f" /tmp/"$slug".mp4 /tmp/"$slug".gif
+            echo "::endgroup::"
+          done
+
+      - name: Commit and push
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "nothing to commit"
+          else
+            git commit -m "add icon(s) from trigger [skip ci]"
+            git push
+          fi
