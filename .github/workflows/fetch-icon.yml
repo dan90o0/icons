@@ -31,6 +31,8 @@ jobs:
         run: |
           set -euo pipefail
           shopt -s nullglob
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           for f in .github/triggers/*.json; do
             url=$(python3 -c "import json;print(json.load(open('$f'))['url'])")
             slug=$(python3 -c "import json;print(json.load(open('$f'))['slug'])")
