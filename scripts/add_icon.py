@@ -118,6 +118,7 @@ def main() -> None:
     INDEX.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     subprocess.run([sys.executable, str(ROOT / "scripts" / "build_readme.py")], check=True)
+    subprocess.run([sys.executable, str(ROOT / "scripts" / "build_manifest.py")], check=True)
 
     subprocess.run(["git", "add", "-A"], cwd=ROOT, check=True)
     subprocess.run(["git", "commit", "-m", f"add icon: {slug} ({args.zh})"], cwd=ROOT, check=True)

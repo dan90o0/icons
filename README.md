@@ -62,6 +62,39 @@ python3 scripts/add_icon.py "https://example.com/arrow.png" --slug arrow-left --
 
 脚本会按后缀把文件放进对应目录，更新 `icons.json`，重写下面的清单表格，然后 commit + push。
 
+## 清单文件（Emby / Jellyfin 图标库格式）
+
+根目录自动生成两类清单，格式与 [sooyaaabo/IconLibrary](https://github.com/sooyaaabo/IconLibrary) 一致（Emby 图标库插件可直接读取）：
+
+| 文件 | 内容 |
+|---|---|
+| `All-Icon.json` | 全量图标（静态 + 动态） |
+| `{分类}-Icon.json` | 按分类拆分，如 `Character-Icon.json` |
+
+结构：
+
+```json
+{
+    "name": "dan90o0 图标库",
+    "description": "作者：dan90o0｜更新时间：2026-11-27 14:37｜共 1 个（静态 0 · 动态 1）",
+    "icons": [
+        {
+            "name": "suis-dance",
+            "url": "https://raw.githubusercontent.com/dan90o0/icons/main/animated/gif/suis-dance.gif"
+        }
+    ]
+}
+```
+
+订阅地址：
+
+```
+https://raw.githubusercontent.com/dan90o0/icons/main/All-Icon.json
+https://cdn.jsdelivr.net/gh/dan90o0/icons@main/All-Icon.json
+```
+
+每次收录图标由 `scripts/build_manifest.py` 自动重建，`name` 取中文名（无则用 slug），`url` 为 raw 直链。注意 Emby 网页端显示 GIF 取决于客户端，部分客户端只渲染首帧。
+
 ## 图标清单
 
 <!-- ICONS:START -->
