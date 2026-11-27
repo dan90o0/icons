@@ -2,6 +2,17 @@
   "repo": "dan90o0/icons",
   "updated": "2026-11-27",
   "naming": "english-slug",
-  "count": 0,
-  "icons": []
+  "count": 1,
+  "icons": [
+    {
+      "slug": "suis-dance",
+      "name_zh": "suis-dance",
+      "category": "character",
+      "type": "animated",
+      "format": "gif",
+      "path": "animated/gif/suis-dance.gif",
+      "size": 534493,
+      "added": "2026-11-27"
+    }
+  ]
 }

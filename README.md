@@ -66,7 +66,11 @@ python3 scripts/add_icon.py "https://example.com/arrow.png" --slug arrow-left --
 
 <!-- ICONS:START -->
 
-_还没有图标。发我一张图 + 一个名字，我就能收进来。_
+### character（1）
+
+| 图标 | 名称 | 中文名 | 格式 | 大小 | 路径 |
+|:---:|---|---|---|---:|---|
+| <img src="https://cdn.jsdelivr.net/gh/dan90o0/icons@main/animated/gif/suis-dance.gif" width="32" alt="suis-dance"> | `suis-dance` | suis-dance | gif | 522.0 KB | `animated/gif/suis-dance.gif` |
 
 <!-- ICONS:END -->
 
