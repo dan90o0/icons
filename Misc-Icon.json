@@ -1,7 +1,11 @@
 {
     "name": "dan90o0 图标库 · misc",
-    "description": "作者：dan90o0｜更新时间：2026-11-27 08:01｜共 1 个（静态 1 · 动态 0）",
+    "description": "作者：dan90o0｜更新时间：2026-11-27 08:01｜共 2 个（静态 1 · 动态 1）",
     "icons": [
+        {
+            "name": "x-2126011517686653059",
+            "url": "https://raw.githubusercontent.com/dan90o0/icons/main/animated/gif/x-2126011517686653059.gif"
+        },
         {
             "name": "zap-bolt",
             "url": "https://raw.githubusercontent.com/dan90o0/icons/main/static/svg/zap-bolt.svg"

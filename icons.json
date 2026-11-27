@@ -2,7 +2,7 @@
   "repo": "dan90o0/icons",
   "updated": "2026-11-27",
   "naming": "english-slug",
-  "count": 5,
+  "count": 6,
   "icons": [
     {
       "slug": "crt-girl",
@@ -42,6 +42,16 @@
       "format": "gif",
       "path": "animated/gif/x-2125926695010254937.gif",
       "size": 704251,
+      "added": "2026-11-27"
+    },
+    {
+      "slug": "x-2126011517686653059",
+      "name_zh": "x-2126011517686653059",
+      "category": "misc",
+      "type": "animated",
+      "format": "gif",
+      "path": "animated/gif/x-2126011517686653059.gif",
+      "size": 487009,
       "added": "2026-11-27"
     },
     {

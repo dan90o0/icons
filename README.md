@@ -144,10 +144,11 @@ https://cdn.jsdelivr.net/gh/dan90o0/icons@main/All-Icon.json
 | <img src="https://cdn.jsdelivr.net/gh/dan90o0/icons@main/animated/gif/suis-dance.gif" width="32" alt="suis-dance"> | `suis-dance` | suis-dance | gif | 522.0 KB | `animated/gif/suis-dance.gif` |
 | <img src="https://cdn.jsdelivr.net/gh/dan90o0/icons@main/animated/gif/x-2125926695010254937.gif" width="32" alt="x-2125926695010254937"> | `x-2125926695010254937` | 生徒会にも穴はある | gif | 687.7 KB | `animated/gif/x-2125926695010254937.gif` |
 
-### misc（1）
+### misc（2）
 
 | 图标 | 名称 | 中文名 | 格式 | 大小 | 路径 |
 |:---:|---|---|---|---:|---|
+| <img src="https://cdn.jsdelivr.net/gh/dan90o0/icons@main/animated/gif/x-2126011517686653059.gif" width="32" alt="x-2126011517686653059"> | `x-2126011517686653059` | x-2126011517686653059 | gif | 475.6 KB | `animated/gif/x-2126011517686653059.gif` |
 | <img src="https://cdn.jsdelivr.net/gh/dan90o0/icons@main/static/svg/zap-bolt.svg" width="32" alt="zap-bolt"> | `zap-bolt` | zap-bolt | svg | 0.2 KB | `static/svg/zap-bolt.svg` |
 
 <!-- ICONS:END -->
